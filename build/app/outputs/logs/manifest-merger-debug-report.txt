@@ -8,6 +8,7 @@ MERGED from /home/salah/MyProjects/multi_vendors_ecommerse_app/android/app/src/m
 MERGED from [:firebase_auth] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
+MERGED from [:shared_preferences] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.multidex:multidex:2.0.0] /home/salah/.gradle/caches/transforms-2/files-2.1/a20be4a04e20a7650c7478728658bc1e/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-auth:20.0.1] /home/salah/.gradle/caches/transforms-2/files-2.1/6379ea66529b11d46c74b9759051cf3c/jetified-firebase-auth-20.0.1/AndroidManifest.xml:17:1-83:12
 MERGED from [com.google.firebase:firebase-firestore:22.0.1] /home/salah/.gradle/caches/transforms-2/files-2.1/77045f4a5d99d44a379dbc3ba7654253/jetified-firebase-firestore-22.0.1/AndroidManifest.xml:2:1-26:12
@@ -139,6 +140,8 @@ MERGED from [:cloud_firestore] /home/salah/MyProjects/multi_vendors_ecommerse_ap
 MERGED from [:cloud_firestore] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /home/salah/MyProjects/multi_vendors_ecommerse_app/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [androidx.multidex:multidex:2.0.0] /home/salah/.gradle/caches/transforms-2/files-2.1/a20be4a04e20a7650c7478728658bc1e/multidex-2.0.0/AndroidManifest.xml:20:5-43
 MERGED from [androidx.multidex:multidex:2.0.0] /home/salah/.gradle/caches/transforms-2/files-2.1/a20be4a04e20a7650c7478728658bc1e/multidex-2.0.0/AndroidManifest.xml:20:5-43
 MERGED from [com.google.firebase:firebase-auth:20.0.1] /home/salah/.gradle/caches/transforms-2/files-2.1/6379ea66529b11d46c74b9759051cf3c/jetified-firebase-auth-20.0.1/AndroidManifest.xml:21:5-44

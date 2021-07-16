@@ -18,7 +18,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await Helper.init();
   Widget startScreen =
-      Helper.getData("isStart") == null ? RegisterScreen() : MarketScreen();
+      Helper.getDataInt("isStart") == null ? RegisterScreen() : MarketScreen();
   runApp(MyApp(
     startScreen: startScreen,
   ));
@@ -52,7 +52,14 @@ class MyApp extends StatelessWidget {
                     bodyText1: TextStyle(fontFamily: "Teko Bold"),
                     bodyText2: TextStyle(fontFamily: "Teko Light"))),
             home: state is GetingDataLoadingState
-                ? Scaffold(body: Center(child: CircularProgressIndicator()))
+                ? Scaffold(body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(child: Image.asset("./assets/images/shopping-1.png"),),
+                    CircularProgressIndicator(),
+                  ],
+                ))
                 : startScreen,
           );
         },

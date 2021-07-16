@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:multi_vendors_ecommerse_app/shared/model/ItemeModel.dart';
+import 'package:multi_vendors_ecommerse_app/shared/sharedpref.dart';
 import '/shared/cubit/AppStates.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '/shared/model/UserMoel.dart';
@@ -37,6 +38,8 @@ class AppCubit extends Cubit<AppState> {
             .collection("users")
             .doc(value.user!.uid)
             .set(user);
+        Helper.putData("isStart", 1);
+        Helper.putData("userUid", value.user.uid);
         emit(SignUpState());
       },
     ).catchError(
@@ -56,6 +59,7 @@ class AppCubit extends Cubit<AppState> {
         .signInWithEmailAndPassword(email: email, password: password)
         .then(
       (value) async {
+
         await FirebaseFirestore.instance
             .collection("users")
             .doc(value.user!.uid)
@@ -64,9 +68,11 @@ class AppCubit extends Cubit<AppState> {
           (value) {
             user = value.data();
             print(user);
-            emit(SigningState());
           },
         );
+        Helper.putData("isStart", 1);
+        Helper.putData("user uid", value.user.uid);
+        emit(SigningState());
       },
     ).catchError(
       (error) {
@@ -80,6 +86,7 @@ class AppCubit extends Cubit<AppState> {
 
   void getAllData() async {
     emit(GetingDataLoadingState());
+    print(Helper.getDataString("userUid"));
     await FirebaseFirestore.instance.collection("users").get().then(
       (value) {
         allUsers = value.docs.toList();
@@ -92,6 +99,11 @@ class AppCubit extends Cubit<AppState> {
       },
     );
 
+    if(Helper.getDataString("userUid") != null) {
+      await FirebaseFirestore.instance.collection("users").doc(Helper.getDataString('uerUid')).get().then((value) {
+        user = value.data();
+      });
+    }
     emit(GetAllDataState());
   }
 

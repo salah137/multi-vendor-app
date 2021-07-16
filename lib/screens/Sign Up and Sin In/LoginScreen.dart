@@ -26,12 +26,7 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   height: double.infinity,
                   width: double.infinity,
-                  child: Image(
-                    image: NetworkImage(
-                      "https://images.unsplash.com/photo-1569180880150-df4eed93c90b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFya2V0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-                    ),
-                    fit: BoxFit.cover,
-                  ),
+                  color: Colors.amber,
                 ),
                 SingleChildScrollView(
                   child: Container(

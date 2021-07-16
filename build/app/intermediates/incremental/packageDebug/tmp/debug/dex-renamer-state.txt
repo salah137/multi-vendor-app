@@ -1,8 +1,9 @@
-#Fri Jul 16 19:46:41 WEST 2021
+#Fri Jul 16 21:36:18 WEST 2021
 path.4=classes_1.dex
 path.3=classes_0.dex
 path.2=classes2.dex
 path.1=classes.dex
+path.6=classes_3.dex
 path.5=classes_2.dex
 path.0=classes.dex
 base.4=/home/salah/MyProjects/multi_vendors_ecommerse_app/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_1.dex
@@ -14,6 +15,8 @@ renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
+renamed.6=classes7.dex
 renamed.5=classes6.dex
+base.6=/home/salah/MyProjects/multi_vendors_ecommerse_app/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_3.dex
 renamed.4=classes5.dex
 base.5=/home/salah/MyProjects/multi_vendors_ecommerse_app/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_2.dex
