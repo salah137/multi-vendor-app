@@ -29,53 +29,10 @@ class MarketScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Container(
-            height: 300,
-            child: ListView.builder(
-              itemBuilder: (ctx, i) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.grey[200],
-                ),
-                margin: EdgeInsets.all(20),
-                width: 200,
-                child: Column(
-                  children: [
-                    Container(
-                      height: 150,
-                      child: ClipRRect(
-                          child: Image.network(imageUrl, fit: BoxFit.cover,),
-                          borderRadius: BorderRadius.circular(15)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "title",
-                            style: TextStyle(fontSize: 40),
-                          ),
-                          Spacer(),
-                          Text(
-                            "145 \$",
-                            style: TextStyle(fontSize: 40),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SmoothStarRating(
-                      isReadOnly: true,
-
-                    )
-                  ],
-                ),
-              ),
-              itemCount: 10,
-              scrollDirection: Axis.horizontal,
-            ),
-          )
+          
         ],
       ),
     );
   }
 }
+
