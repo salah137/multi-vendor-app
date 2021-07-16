@@ -11,7 +11,7 @@ class AppCubit extends Cubit<AppState> {
           InitialState(),
         );
 
-  static var user;
+  static Map<String,dynamic> user = {};
 
   static List allUsers = [];
   static List allItemes = [];
@@ -25,23 +25,18 @@ class AppCubit extends Cubit<AppState> {
         print(value.user.email);
         print(value.user.uid);
         print(username);
-        user = UserModel(
-          name: username,
-          userProfile:
-              "https://hearhear.org/wp-content/uploads/2019/09/no-image-icon.png",
-          products: [],
-          email: email,
-        );
-        await FirebaseFirestore.instance
-            .collection("users")
-            .doc(value.user!.uid)
-            .set({
+        user = {
           "name": username,
           "userProfile":
               "https://hearhear.org/wp-content/uploads/2019/09/no-image-icon.png",
           "products": [],
           "email": email,
-        });
+        };
+        print(user);
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(value.user!.uid)
+            .set(user);
         emit(SignUpState());
       },
     ).catchError(
@@ -57,17 +52,19 @@ class AppCubit extends Cubit<AppState> {
   Future signIn(email, password) async {
     
     emit(SigninLoadingState());
-    FirebaseAuth.instance
+    await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then(
-      (value) {
-        FirebaseFirestore.instance
+      (value) async {
+        await FirebaseFirestore.instance
             .collection("users")
             .doc(value.user!.uid)
             .get()
             .then(
           (value) {
             user = value.data();
+            print(user);
+            emit(SigningState());
           },
         );
       },
@@ -85,16 +82,13 @@ class AppCubit extends Cubit<AppState> {
     emit(GetingDataLoadingState());
     await FirebaseFirestore.instance.collection("users").get().then(
       (value) {
-        for (int i = 0; i < value.docs.length; i++) {
-          allUsers.add(value.docs[i]);
-        }
+        allUsers = value.docs.toList();
+        print(allUsers);
       },
     );
     await FirebaseFirestore.instance.collection("itemes").get().then(
-      (value) {
-        for (int i = 0; i < value.docs.length; i++) {
-          allItemes.add(value.docs[i]);
-        }
+      (value) {allItemes = value.docs.toList();
+      print(allItemes);
       },
     );
 

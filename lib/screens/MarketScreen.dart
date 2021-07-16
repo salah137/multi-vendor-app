@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_vendors_ecommerse_app/shared/components.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:multi_vendors_ecommerse_app/shared/cubit/AppCubit.dart';
+import 'package:multi_vendors_ecommerse_app/shared/cubit/AppStates.dart';
 
 class MarketScreen extends StatelessWidget {
   MarketScreen({Key? key}) : super(key: key);
@@ -10,12 +12,15 @@ class MarketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocConsumer<AppCubit, AppState>(
+      builder: (ctx, state) {
+        AppCubit cubit = BlocProvider.of(ctx);
+        return Scaffold(
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.all(3.0),
           child: CircleAvatar(
-            backgroundImage: NetworkImage(imageUrl),
+            backgroundImage: NetworkImage(AppCubit.user["userProfile"]),
           ),
         ),
         actions: [
@@ -28,12 +33,64 @@ class MarketScreen extends StatelessWidget {
               ))
         ],
       ),
-      body: ListView(
-        children: [
-          Text("tech"),
-          listBuilder(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                Text("tech", style: TextStyle(fontSize: 40),),
+                Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: Text("show all"),
+                ),
+              ],
+            ),
+            listBuilder(AppCubit.allItemes.where((element) => element["category"] == "tech").toList()),
+            SizedBox(height: 30,),    
+            Row(
+              children: [
+                Text("cloths", style: TextStyle(fontSize: 40),),
+                Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: Text("show all"),
+                ),
+              ],
+            ),
+            listBuilder(AppCubit.allItemes.where((element) => element["category"] == "cloths").toList()),          
+            SizedBox(height: 30,),    
+            Row(
+              children: [
+                Text("freelancing", style: TextStyle(fontSize: 40),),
+                Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: Text("show all"),
+                ),
+              ],
+            ),
+            listBuilder(AppCubit.allItemes.where((element)=> element["category"] == "freelancing").toList()),
+            SizedBox(height: 30,),
+            Row(
+              children: [
+                Text('fachion', style: TextStyle(fontSize: 40),),
+                Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: Text("show all"),
+                ),
+              ],
+            ),    
+            listBuilder(AppCubit.allItemes.where((element) => element['category'] == "fachion").toList())
+
+          ],
+        ),
       ),
+    );
+      },
+      listener: (ctx, state){},
     );
   }
 }

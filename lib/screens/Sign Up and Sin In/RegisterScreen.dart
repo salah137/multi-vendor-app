@@ -1,6 +1,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_vendors_ecommerse_app/screens/MarketScreen.dart';
 import '/layouts/HomeLayout.dart';
 import '/screens/Sign Up and Sin In/LoginScreen.dart';
 import '/shared/cubit/AppCubit.dart';
@@ -147,7 +148,7 @@ class RegisterScreen extends StatelessWidget {
                                     (value) {
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
-                                              builder: (ctx) => HomePage()),
+                                              builder: (ctx) => MarketScreen()),
                                           (route) => false);
                                     },
                                   );

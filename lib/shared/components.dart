@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-Widget listBuilder(list) => Container(
+Widget listBuilder(list) => list.length != 0?Container(
       height: 300,
       child: ListView.builder(
         itemBuilder: (ctx, i) => itemeBuilder(list[i]),
-        itemCount: 10,
+        itemCount: list.length,
         scrollDirection: Axis.horizontal,
       ),
-    );
+    ):Text('There is not any iteme');
 
 Widget itemeBuilder(iteme) => Container(
       decoration: BoxDecoration(
