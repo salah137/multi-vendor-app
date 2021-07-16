@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_vendors_ecommerse_app/screens/MarketScreen.dart';
 import 'package:multi_vendors_ecommerse_app/shared/cubit/AppStates.dart';
 import '/layouts/HomeLayout.dart';
 import '/screens/Sign Up and Sin In/LoginScreen.dart';
@@ -29,11 +31,21 @@ class MyApp extends StatelessWidget {
           return  MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
+            appBarTheme: AppBarTheme(
+
+              backgroundColor: Colors.white,
+              systemOverlayStyle:SystemUiOverlayStyle(
+                statusBarColor: Colors.white,
+                statusBarIconBrightness: Brightness.dark,              
+              ),
+              elevation: 0,
+            ),
+              scaffoldBackgroundColor: Colors.white,
               primarySwatch: Colors.blue,
               textTheme: TextTheme(
                   bodyText1: TextStyle(fontFamily: "Teko Bold"),
                   bodyText2: TextStyle(fontFamily: "Teko Light"))),
-          home: state is GetingDataLoadingState ? Scaffold(body: Center(child: CircularProgressIndicator())):RegisterScreen(),
+          home: state is GetingDataLoadingState ? Scaffold(body: Center(child: CircularProgressIndicator())):MarketScreen(),
         );
         },
         listener: (ctx,state){},
