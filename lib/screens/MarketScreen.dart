@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_vendors_ecommerse_app/shared/components.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class MarketScreen extends StatelessWidget {
@@ -29,7 +30,8 @@ class MarketScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          
+          Text("tech"),
+          listBuilder(),
         ],
       ),
     );

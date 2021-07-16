@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
               elevation: 0,
             ),
               scaffoldBackgroundColor: Colors.white,
-              primarySwatch: Colors.blue,
+              primarySwatch: Colors.indigo,
               textTheme: TextTheme(
                   bodyText1: TextStyle(fontFamily: "Teko Bold"),
                   bodyText2: TextStyle(fontFamily: "Teko Light"))),
