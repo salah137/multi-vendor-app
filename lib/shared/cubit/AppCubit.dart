@@ -86,7 +86,7 @@ class AppCubit extends Cubit<AppState> {
 
   void getAllData() async {
     emit(GetingDataLoadingState());
-    print(Helper.getDataString("userUid"));
+    print(Helper.getDataString("userUid")!);
     await FirebaseFirestore.instance.collection("users").get().then(
       (value) {
         allUsers = value.docs.toList();
@@ -100,7 +100,7 @@ class AppCubit extends Cubit<AppState> {
     );
 
     if(Helper.getDataString("userUid") != null) {
-      await FirebaseFirestore.instance.collection("users").doc(Helper.getDataString('uerUid')).get().then((value) {
+      await FirebaseFirestore.instance.collection("users").doc(Helper.getDataString('uerUid')!).get().then((value) {
         user = value.data();
       });
     }
