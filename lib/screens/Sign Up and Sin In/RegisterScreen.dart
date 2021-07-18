@@ -141,6 +141,7 @@ class RegisterScreen extends StatelessWidget {
                                   )
                                       .then(
                                     (value) {
+                                      if(state is SignUpState)
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (ctx) => MarketScreen()),

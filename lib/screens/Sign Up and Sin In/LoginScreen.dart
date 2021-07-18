@@ -96,6 +96,7 @@ class LoginScreen extends StatelessWidget {
                                 if (formkey.currentState!.validate())
                                   cubit.signIn(email.text, password.text).then(
                                     (value) {
+                                      if(state is SigningState)
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (ctx) => MarketScreen()),

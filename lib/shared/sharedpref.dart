@@ -7,14 +7,25 @@ class Helper {
     sharedPreference = await SharedPreferences.getInstance();
   }
 
-  static void putData(key, value) async {
-    if (value is int)
+  static Future putData(key, value) async {
+    var x;
+    if (value is int){
       sharedPreference!.setInt(key, value);
-    else if (value is String)
+      x = getDataInt(key);
+    }
+    else if (value is String){
       sharedPreference!.setString(key, value);
-    else if (value is bool)
+      x = getDataString(key);
+    }
+    else if (value is bool){
       sharedPreference!.setBool(key, value);
-    else if (value is double) sharedPreference!.setDouble(key, value);
+      x = getDataBool(key);
+    }
+    else if (value is double){ sharedPreference!.setDouble(key, value);
+      x = getDataDouble(key);
+    }
+  print(x);
+    print("data is seted");
   }
 
   static int? getDataInt(
@@ -26,6 +37,7 @@ class Helper {
   static String? getDataString(
     key,
   ) {
+    var value = sharedPreference!.getBool(key);
     return sharedPreference!.getString(key);
   }
 

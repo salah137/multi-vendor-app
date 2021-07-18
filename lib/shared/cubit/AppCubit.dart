@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:multi_vendors_ecommerse_app/shared/model/ItemeModel.dart';
 import 'package:multi_vendors_ecommerse_app/shared/sharedpref.dart';
 import '/shared/cubit/AppStates.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '/shared/model/UserMoel.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit()
@@ -12,7 +15,7 @@ class AppCubit extends Cubit<AppState> {
           InitialState(),
         );
 
-  static Map<String,dynamic> user = {};
+  static Map<String, dynamic> user = {};
 
   static List allUsers = [];
   static List allItemes = [];
@@ -38,28 +41,20 @@ class AppCubit extends Cubit<AppState> {
             .collection("users")
             .doc(value.user!.uid)
             .set(user);
-        Helper.putData("isStart", 1);
-        Helper.putData("userUid", value.user.uid);
-        emit(SignUpState());
-      },
-    ).catchError(
-      (erro) {
-        emit(
-          SignUpErrorState(),
-        );
-        print(erro);
+        await Helper.putData("user uid", value.user.uid).then((value) async {
+          await Helper.putData("isStart", 1);
+          emit(SigningState());
+        });
       },
     );
   }
 
   Future signIn(email, password) async {
-    
     emit(SigninLoadingState());
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then(
       (value) async {
-
         await FirebaseFirestore.instance
             .collection("users")
             .doc(value.user!.uid)
@@ -70,9 +65,10 @@ class AppCubit extends Cubit<AppState> {
             print(user);
           },
         );
-        Helper.putData("isStart", 1);
-        Helper.putData("user uid", value.user.uid);
-        emit(SigningState());
+        await Helper.putData("user uid", value.user.uid).then((value) async {
+          await Helper.putData("isStart", 1);
+          emit(SigningState());
+        });
       },
     ).catchError(
       (error) {
@@ -80,13 +76,19 @@ class AppCubit extends Cubit<AppState> {
         emit(
           SigninErrorState(),
         );
+                Fluttertoast.showToast(
+            msg: error.toString().substring(error.toString().indexOf("]")+1),
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            
+            );
+        print(error);
       },
     );
   }
 
   void getAllData() async {
     emit(GetingDataLoadingState());
-    print(Helper.getDataString("userUid")!);
     await FirebaseFirestore.instance.collection("users").get().then(
       (value) {
         allUsers = value.docs.toList();
@@ -94,13 +96,18 @@ class AppCubit extends Cubit<AppState> {
       },
     );
     await FirebaseFirestore.instance.collection("itemes").get().then(
-      (value) {allItemes = value.docs.toList();
-      print(allItemes);
+      (value) {
+        allItemes = value.docs.toList();
+        print(allItemes);
       },
     );
 
-    if(Helper.getDataString("userUid") != null) {
-      await FirebaseFirestore.instance.collection("users").doc(Helper.getDataString('uerUid')!).get().then((value) {
+    if (Helper.getDataString("userUid") != null) {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(Helper.getDataString('uerUid')!)
+          .get()
+          .then((value) {
         user = value.data();
       });
     }
