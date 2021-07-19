@@ -18,7 +18,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await Helper.init();
   Widget startScreen =
-      Helper.getDataInt("isStart") == null ? RegisterScreen() : MarketScreen();
+      Helper.getDataInt("isStart") == null ? RegisterScreen() : HomePage();
   runApp(MyApp(
     startScreen: startScreen,
   ));
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(child: Image.asset("./assets/images/shopping-1.png"),),
+                    Container(padding: EdgeInsets.all(20), child: Image.asset("./assets/images/shopping-1.png"),),
                     CircularProgressIndicator(),
                   ],
                 ))

@@ -130,10 +130,10 @@ class RegisterScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: MaterialButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (formkey.currentState!.validate())
                                 {print(username);
-                                  cubit
+                                await   cubit
                                       .signUp(
                                     email.text,
                                     password.text,
@@ -141,10 +141,13 @@ class RegisterScreen extends StatelessWidget {
                                   )
                                       .then(
                                     (value) {
-                                      if(state is SignUpState)
+                                      print(state.toString());
+                                      print(state is SignUpState);
+
+                                      if(!(state is SignUpErrorState))
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
-                                              builder: (ctx) => MarketScreen()),
+                                              builder: (ctx) => HomePage()),
                                           (route) => false);
                                     },
                                   );

@@ -18,4 +18,4 @@ class GetingDataLoadingState extends AppState {}
 
 class GetAllDataState extends AppState {}
 
-
+class ChangeScreen extends AppState{}

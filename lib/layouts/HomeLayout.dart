@@ -10,8 +10,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       builder: (ctx, state) {
+        AppCubit cubit = BlocProvider.of(ctx);
         return Scaffold(
-          
+          body: cubit.screens[cubit.index],
+          bottomNavigationBar: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home' ),
+              BottomNavigationBarItem(icon: Icon(Icons.business), label: "chats")
+            ],
+            currentIndex: cubit.index,
+            onTap: cubit.changIndex,
+
+          ),
         );
       },
       listener: (ctx, state) {},

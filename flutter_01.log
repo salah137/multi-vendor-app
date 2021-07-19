@@ -1,0 +1,74 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run --no-sound-null-safety
+
+## exception
+
+NoSuchMethodError: NoSuchMethodError: The getter 'assetPathsToEvict' was called on null.
+Receiver: null
+Tried calling: assetPathsToEvict
+
+```
+#0      Object.noSuchMethod (dart:core-patch/object_patch.dart:54:5)
+#1      HotRunner._resetDirtyAssets (package:flutter_tools/src/run_hot.dart:436:20)
+#2      HotRunner._restartFromSources (package:flutter_tools/src/run_hot.dart:499:5)
+<asynchronous suspension>
+#3      HotRunner._fullRestartHelper (package:flutter_tools/src/run_hot.dart:689:16)
+<asynchronous suspension>
+#4      HotRunner.restart (package:flutter_tools/src/run_hot.dart:637:38)
+<asynchronous suspension>
+#5      TerminalHandler._commonTerminalInputHandler (package:flutter_tools/src/resident_runner.dart:1602:40)
+<asynchronous suspension>
+#6      TerminalHandler.processTerminalInput (package:flutter_tools/src/resident_runner.dart:1644:7)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 2.2.1, on Linux, locale en_US.UTF-8)
+    • Flutter version 2.2.1 at /home/salah/snap/flutter/common/flutter
+    • Framework revision 02c026b03c (7 weeks ago), 2021-05-27 12:24:44 -0700
+    • Engine revision 0fdb562ac8
+    • Dart version 2.13.1
+
+[!] Android toolchain - develop for Android devices (Android SDK version 30.0.3)
+    • Android SDK at /home/salah/Android/Sdk
+    • Platform android-30, build-tools 30.0.3
+    • Java binary at:
+      /home/salah/Downloads/android-studio-ide-202.7486908-linux/android-studio/jre/bin/java
+    • Java version OpenJDK Runtime Environment (build 11.0.8+0-b944-P17168821)
+    ✗ Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/docs/get-started/install/linux#android-setup for more details.
+
+[✓] Chrome - develop for the web
+    • Chrome at google-chrome
+
+[✓] Linux toolchain - develop for Linux desktop
+    • clang version 6.0.0-1ubuntu2 (tags/RELEASE_600/final)
+    • cmake version 3.10.2
+    • ninja version 1.8.2
+    • pkg-config version 0.29.1
+
+[✓] Android Studio (version 4.2)
+    • Android Studio at /home/salah/Downloads/android-studio-ide-202.7486908-linux/android-studio
+    • Flutter plugin version 58.0.1
+    • Dart plugin version 202.8531
+    • Java version OpenJDK Runtime Environment (build 11.0.8+0-b944-P17168821)
+
+[✓] VS Code (version 1.58.1)
+    • VS Code at /usr/share/code
+    • Flutter extension version 3.24.0
+
+[✓] Connected device (3 available)
+    • Infinix X627 (mobile) • 043911195M110064 • android-arm    • Android 9 (API 28)
+    • Linux (desktop)       • linux            • linux-x64      • Linux
+    • Chrome (web)          • chrome           • web-javascript • Google Chrome 91.0.4472.114
+    ! Device 043911195M110064 is offline.
+
+! Doctor found issues in 1 category.
+```

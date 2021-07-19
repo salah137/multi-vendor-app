@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,6 +67,7 @@ class LoginScreen extends StatelessWidget {
 
                             return null;
                           },
+                          keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(
                           height: 30,
@@ -92,15 +95,19 @@ class LoginScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: MaterialButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (formkey.currentState!.validate())
-                                  cubit.signIn(email.text, password.text).then(
+
+                                  await cubit.signIn(email.text, password.text).then(
                                     (value) {
-                                      if(state is SigningState)
+                                      print(state.toString());
+                                      if(!(state is SigninErrorState))
+                                      {
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
-                                              builder: (ctx) => MarketScreen()),
+                                              builder: (ctx) => HomePage()),
                                           (route) => false);
+                                      }
                                     },
                                   );
                               },

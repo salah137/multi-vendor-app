@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:multi_vendors_ecommerse_app/screens/ChatsScreen.dart';
+import 'package:multi_vendors_ecommerse_app/screens/MarketScreen.dart';
 import 'package:multi_vendors_ecommerse_app/shared/model/ItemeModel.dart';
 import 'package:multi_vendors_ecommerse_app/shared/sharedpref.dart';
 import '/shared/cubit/AppStates.dart';
@@ -43,8 +45,21 @@ class AppCubit extends Cubit<AppState> {
             .set(user);
         await Helper.putData("user uid", value.user.uid).then((value) async {
           await Helper.putData("isStart", 1);
-          emit(SigningState());
-        });
+          emit(SignUpState());
+        }).catchError(
+      (error) {
+        print(error.toString());
+        emit(
+          SignUpErrorState(),
+        );
+                Fluttertoast.showToast(
+            msg: error.toString().substring(error.toString().indexOf("]")+1),
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            
+            );
+        print(error);
+      });
       },
     );
   }
@@ -102,10 +117,10 @@ class AppCubit extends Cubit<AppState> {
       },
     );
 
-    if (Helper.getDataString("userUid") != null) {
+    if (Helper.getDataString("user uid") != null) {
       await FirebaseFirestore.instance
           .collection("users")
-          .doc(Helper.getDataString('uerUid')!)
+          .doc(Helper.getDataString('user uid')!)
           .get()
           .then((value) {
         user = value.data();
@@ -130,5 +145,15 @@ class AppCubit extends Cubit<AppState> {
       }
     }
     return true;
+  }
+
+  List<Widget> screens = [
+    MarketScreen(),
+    ChatsScreen(),
+  ];
+  int index = 0;
+  void changIndex(int i){
+    index = i;
+    emit(ChangeScreen());
   }
 }

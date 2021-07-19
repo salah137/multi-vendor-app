@@ -24,7 +24,7 @@ class Helper {
     else if (value is double){ sharedPreference!.setDouble(key, value);
       x = getDataDouble(key);
     }
-  print(x);
+    print(x);
     print("data is seted");
   }
 
@@ -37,19 +37,21 @@ class Helper {
   static String? getDataString(
     key,
   ) {
-    var value = sharedPreference!.getBool(key);
+    print(sharedPreference!.getString(key));
     return sharedPreference!.getString(key);
   }
 
   static double? getDataDouble(
     key,
   ) {
+    print(sharedPreference!.getDouble(key));
     return sharedPreference!.getDouble(key);
   }
 
   static bool? getDataBool(
     key,
   ) {
+    print(sharedPreference!.getBool(key));
     return sharedPreference!.getBool(key);
   }
 }
